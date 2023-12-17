@@ -1,0 +1,9 @@
+﻿DROP TABLE TPedidos;
+
+CREATE TABLE TPedidos (
+    NPedido INT IDENTITY(1,1) PRIMARY KEY,
+    Cliente VARCHAR(20) NOT NULL,
+    DNI VARCHAR(20) NOT NULL,
+    Cantidad INT NOT NULL,
+    Fecha VARCHAR(20) NOT NULL
+);

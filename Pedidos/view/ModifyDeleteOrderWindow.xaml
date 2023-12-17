@@ -1,0 +1,103 @@
+﻿<Window x:Class="Pedidos.view.ModifyDeleteOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pedidos.view"
+        xmlns:viewModel="clr-namespace:Pedidos.viewmodel"
+        mc:Ignorable="d"
+        Title="ModifyDeleteOrderWindow" Height="450" Width="800">
+    <Window.Resources>
+        <viewModel:StringToDateConverter x:Key="StringToDateConverter"/>
+    </Window.Resources>
+    <Grid Margin="10" Background="Aquamarine">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Nº Pedido"
+                   Grid.Row="0" Grid.Column="0"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="22"/>
+            <ComboBox
+                     Grid.Row="0" VerticalAlignment="Center"
+                     Height="39"
+                     FontSize="25"
+                     ItemsSource="{Binding OrderList}"
+                     DisplayMemberPath="NPedido"
+                     SelectedItem="{Binding SelectedOrder, Mode=Twoway}" Grid.ColumnSpan="2" Margin="253,0,0,0" SelectionChanged="ComboBox_SelectionChanged"/>
+        </Grid>
+        <Grid Margin="10" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="16*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="16*"/>
+                <RowDefinition Height="16*"/>
+            </Grid.RowDefinitions>
+
+
+            <Label Content="Fecha Pedido"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="22"/>
+            <DatePicker SelectedDate="{Binding Fecha, Converter={StaticResource StringToDateConverter}, Mode=TwoWay}" DataContext="{Binding}" VerticalAlignment="Center"
+                        FontSize="22" FontWeight="DemiBold" Grid.ColumnSpan="2" Margin="253,0,0,0"/>
+            <Label Content="Cantidad Pedido"
+                   Grid.Row="1"
+                   HorizontalAlignment="Center" VerticalAlignment="Top"
+                   FontSize="22" Margin="0,12,0,0" Grid.RowSpan="2"/>
+            <TextBox Text="{Binding Cantidad, Mode=Twoway}"
+                     Grid.Row="1" VerticalAlignment="Top"
+                     Height="39"
+                     FontSize="25" Grid.ColumnSpan="2" Margin="253,13,0,0" Grid.RowSpan="2"/>
+
+            <Label Content="Cliente"
+                   Grid.Row="3"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="22"/>
+            <TextBox Text="{Binding Cliente, Mode=Twoway}" DataContext="{Binding}"
+                     Grid.Row="3" VerticalAlignment="Center"
+                     Height="39"
+                     FontSize="25" Grid.ColumnSpan="2" Margin="253,0,0,0"/>
+            <Label Content="DNI"
+                   Grid.Row="4"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="22"/>
+            <TextBox Text="{Binding DNI, Mode=Twoway}" DataContext="{Binding}"
+                     Grid.Row="4" VerticalAlignment="Center"
+                     Height="39"
+                     FontSize="25" Grid.ColumnSpan="2" Margin="253,0,0,0"/>
+        </Grid>
+        <Grid Grid.Row="2" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content="Borrar Pedido"
+                    Grid.Column="0" Width="300" Height="50"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    FontSize="28" FontWeight="Bold"
+                    Command="{Binding Delete}"/>
+            <Button Content="Actualizar Pedido"
+                    Grid.Column="1" Width="300" Height="50"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    FontSize="28" FontWeight="Bold"
+                    Command="{Binding Update}"/>
+        </Grid>
+    </Grid>
+</Window>
